@@ -4,12 +4,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TaskAdder from "./TaskAdder";
 import TaskView from "./TaskView";
+import { connect } from "react-redux";
 
-function App() {
+const App = () => {
   return (
     <>
-      <Navbar bg="light">
-        <Navbar.Brand href="#home">react-todo</Navbar.Brand>
+      <Navbar bg="dark">
+        <Navbar.Brand href="#home" className="m-auto">
+          react-todo
+        </Navbar.Brand>
       </Navbar>
       <Container className="mt-4">
         <Row>
@@ -25,6 +28,6 @@ function App() {
       </Container>
     </>
   );
-}
+};
 
-export default App;
+export default connect()(App);
