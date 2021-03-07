@@ -118,7 +118,7 @@ const todosReducer = (state = todosInitialState, action) => {
         todosList: state.todosList.map((e) => {
           return {
             ...e,
-            isDone: e.isSelected, // is not a toggle
+            isDone: e.isSelected ? true : e.isDone, // is not a toggle
           };
         }),
       };
