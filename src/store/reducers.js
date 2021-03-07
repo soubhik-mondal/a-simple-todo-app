@@ -8,7 +8,8 @@ const todosInitialState = {
 };
 
 const todosReducer = (state = todosInitialState, action) => {
-  let newState = {};
+  let newState = {},
+    countSelected;
   switch (action.type) {
     case actionTypes.ADD_TODO:
       newState = {
@@ -28,17 +29,24 @@ const todosReducer = (state = todosInitialState, action) => {
       });
       return newState;
     case actionTypes.DELETE_TODO:
+      countSelected = 0;
       newState = {
         isSelectAll: state.isSelectAll,
         lastId: state.lastId,
         todosList: state.todosList
           .filter((e) => e.id !== action.data)
           .map((e) => {
+            if (e.isSelected) {
+              countSelected++;
+            }
             return {
               ...e,
             };
           }),
       };
+      if (newState.todosList.length === countSelected) {
+        newState.isSelectAll = true; // because all the elements in the list are selected
+      }
       if (!newState.todosList.length) {
         newState.isSelectAll = false; // because there are no elements in the list
       }
@@ -59,7 +67,7 @@ const todosReducer = (state = todosInitialState, action) => {
       };
       return newState;
     case actionTypes.SELECT_TODO:
-      let countSelected = 0;
+      countSelected = 0;
       newState = {
         isSelectAll: state.isSelectAll,
         lastId: state.lastId,

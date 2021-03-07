@@ -27,7 +27,7 @@ class TaskAdder extends Component {
     return (
       <InputGroup className="mb-3">
         <FormControl
-          placeholder="What d'you wanna get done today?"
+          placeholder="What d'you wanna get done today, cap'n?"
           onChange={(e) => this.setText(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && this.buttonClickHandler()}
           value={this.state.text}
